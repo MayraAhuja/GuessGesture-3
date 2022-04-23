@@ -20,14 +20,14 @@ function takeSnap() {
 
 
 console.log(ml5.version);
- model= ml4.imageClassifier("https://teachablemachine.withgoogle.com/models/wn4B4YQ0F/model.json",modelUpdate);
+ model= ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/wn4B4YQ0F/model.json",modelUpdate);
 
 function modelUpdate() {
     console.log("Model is loaded ;)");
 }
 
 
-function checkGesture() {
+function guessGesture() {
     var image = document.getElementById("snapshot");
     model.classify(image,getResults);
 }
@@ -36,7 +36,7 @@ function checkGesture() {
 
 function speak() {
     var speechKit= window.speechSynthesis;
-    var speakThis= "I think you are "+guess1+" or "+guess2;
+    var speakThis= "I think you are holding "+guess1+" or "+guess2;
     var textToSpeech= new SpeechSynthesisUtterance(speakThis);
     speechKit.speak(textToSpeech);
 }
@@ -52,12 +52,29 @@ function getResults(errorArray,resultsArray) {
         speak();
         
 
-        if (guess1=="I need help finding what it is called the camera not working") {
-            document.getElementById("prediction1").innerHTML="&#128522;";
+        if (guess1=="Peace") {
+            document.getElementById("prediction1").innerHTML="&#9996;";
         }
 
-        if (guess2= "I need help finding what it is called The camera not working") {
-            document.getElementById("prediction2").innerHTML="&#128522;";
+        if (guess2= "Peace") {
+            document.getElementById("prediction2").innerHTML="&#9996;";
+        }
+
+        if (guess1=="Down") {
+            document.getElementById("prediction1").innerHTML="&#128071;";
+        }
+
+        if (guess2= "Down") {
+            document.getElementById("prediction2").innerHTML="&#128071;";
+        }
+
+
+        if (guess1=="wave") {
+            document.getElementById("prediction1").innerHTML="&#128400;";
+        }
+
+        if (guess2= "wave") {
+            document.getElementById("prediction2").innerHTML="&#128400;";
         }
 
 
